@@ -1,30 +1,54 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
+import 'dart:io';
 
+import 'package:calculadora_laboral_mx/app/app.dart';
+import 'package:calculadora_laboral_mx/features/calculator/presentation/calculator_screen.dart';
+import 'package:calculadora_laboral_mx/features/calculator/presentation/results_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:calculadora_laboral_mx/main.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hive/hive.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  setUpAll(() async {
+    TestWidgetsFlutterBinding.ensureInitialized();
+    final tempDirectory = await Directory.systemTemp.createTemp('clmx_test_');
+    Hive.init(tempDirectory.path);
+    await Hive.openBox<dynamic>('app_settings');
+    await Hive.openBox<Map<dynamic, dynamic>>('calculation_history');
+  });
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
-
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
+  testWidgets('renders app shell', (WidgetTester tester) async {
+    await tester.pumpWidget(
+      const ProviderScope(child: CalculadoraLaboralMxApp()),
+    );
     await tester.pump();
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    expect(find.text('Calculadora Laboral MX'), findsOneWidget);
+  });
+
+  testWidgets('calculator wizard advances from type to dates', (
+    WidgetTester tester,
+  ) async {
+    await tester.pumpWidget(
+      const ProviderScope(child: MaterialApp(home: CalculatorScreen())),
+    );
+
+    expect(find.text('Tipo de calculo'), findsOneWidget);
+
+    await tester.tap(find.text('Siguiente'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Fechas laborales'), findsOneWidget);
+  });
+
+  testWidgets('results screen renders dashboard total', (
+    WidgetTester tester,
+  ) async {
+    await tester.pumpWidget(
+      const ProviderScope(child: MaterialApp(home: ResultsScreen())),
+    );
+
+    expect(find.text('Resultado estimado'), findsOneWidget);
+    expect(find.text('Total neto'), findsOneWidget);
   });
 }
