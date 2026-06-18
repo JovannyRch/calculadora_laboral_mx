@@ -1,4 +1,5 @@
 import 'package:calculadora_laboral_mx/features/calculator/domain/calculation_input.dart';
+import 'package:calculadora_laboral_mx/features/calculator/domain/calculation_result.dart';
 import 'package:calculadora_laboral_mx/features/calculator/domain/calculation_type.dart';
 import 'package:calculadora_laboral_mx/features/calculator/domain/labor_calculator_service.dart';
 import 'package:calculadora_laboral_mx/features/calculator/data/pdf_report_service.dart';
@@ -125,6 +126,20 @@ void main() {
     expect(restored.title, 'Renuncia - Junio 2026');
     expect(restored.input.companyOfferAmount, 1500);
     expect(restored.result.netTotal, result.netTotal);
+    expect(restored.result.breakdownItems.first.legalBasis, isNotEmpty);
+  });
+
+  test('breakdown viejo sin fundamento legal se restaura', () {
+    final restored = BreakdownItem.fromMap({
+      'title': 'Concepto anterior',
+      'description': 'Guardado antes del sustento legal.',
+      'amount': 100,
+      'formula': 'formula anterior',
+      'category': 'settlement',
+    });
+
+    expect(restored.legalBasis, '');
+    expect(restored.legalNote, '');
   });
 
   test('reporte PDF genera bytes validos', () async {

@@ -57,6 +57,8 @@ class BreakdownItem {
     required this.amount,
     required this.formula,
     required this.category,
+    this.legalBasis = '',
+    this.legalNote = '',
   });
 
   final String title;
@@ -64,6 +66,8 @@ class BreakdownItem {
   final double amount;
   final String formula;
   final BreakdownCategory category;
+  final String legalBasis;
+  final String legalNote;
 
   Map<String, dynamic> toMap() {
     return {
@@ -72,6 +76,8 @@ class BreakdownItem {
       'amount': amount,
       'formula': formula,
       'category': category.name,
+      'legalBasis': legalBasis,
+      'legalNote': legalNote,
     };
   }
 
@@ -85,6 +91,8 @@ class BreakdownItem {
         (category) => category.name == map['category'],
         orElse: () => BreakdownCategory.settlement,
       ),
+      legalBasis: map['legalBasis'] as String? ?? '',
+      legalNote: map['legalNote'] as String? ?? '',
     );
   }
 }

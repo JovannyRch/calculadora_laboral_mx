@@ -7,6 +7,25 @@ import 'package:calculadora_laboral_mx/features/calculator/domain/calculation_ty
 class LaborCalculatorService {
   const LaborCalculatorService({this.minimumDailyWage = 315.04});
 
+  static const _salaryBasis =
+      'LFT art. 89. Para indemnizaciones se toma como base el salario diario.';
+  static const _bonusBasis =
+      'LFT art. 87. Aguinaldo minimo de 15 dias y pago proporcional.';
+  static const _vacationBasis =
+      'LFT arts. 76 y 79. Dias de vacaciones por antiguedad y pago proporcional.';
+  static const _vacationPremiumBasis =
+      'LFT art. 80. Prima no menor de 25% sobre salarios de vacaciones.';
+  static const _constitutionalBasis =
+      'LFT arts. 48 y 50. Indemnizacion de tres meses de salario.';
+  static const _twentyDaysBasis =
+      'LFT art. 50. Veinte dias de salario por cada año de servicios.';
+  static const _seniorityPremiumBasis =
+      'LFT art. 162, relacionado con arts. 485 y 486. Doce dias por año con salario topado.';
+  static const _taxBasis =
+      'ISR no calculado en esta version. Campo preparado para integracion fiscal futura.';
+  static const _comparisonBasis =
+      'Comparacion aritmetica informativa; no es un concepto laboral legal.';
+
   final double minimumDailyWage;
 
   LaborCalculationResult calculate(LaborCalculationInput input) {
@@ -25,6 +44,9 @@ class LaborCalculatorService {
         amount: _round(dailySalary * input.unpaidWorkedDays),
         formula: 'salario diario * dias pendientes',
         category: BreakdownCategory.settlement,
+        legalBasis: _salaryBasis,
+        legalNote:
+            'Corresponde a salario devengado pendiente de pago capturado por el usuario.',
       ),
       BreakdownItem(
         title: 'Aguinaldo proporcional',
@@ -36,6 +58,9 @@ class LaborCalculatorService {
             : _round(dailySalary * input.annualBonusDays * currentYearRatio),
         formula: 'salario diario * dias de aguinaldo * proporcion anual',
         category: BreakdownCategory.settlement,
+        legalBasis: _bonusBasis,
+        legalNote:
+            'Se usa la proporcion del año calendario trabajado hasta la fecha de salida.',
       ),
       BreakdownItem(
         title: 'Vacaciones proporcionales',
@@ -47,6 +72,9 @@ class LaborCalculatorService {
             : _round(dailySalary * vacationDays * vacationRatio),
         formula: 'salario diario * dias de vacaciones * proporcion periodo',
         category: BreakdownCategory.settlement,
+        legalBasis: _vacationBasis,
+        legalNote:
+            'Los dias anuales se toman de la tabla legal vigente por antiguedad.',
       ),
       BreakdownItem(
         title: 'Vacaciones pendientes',
@@ -54,6 +82,9 @@ class LaborCalculatorService {
         amount: _round(dailySalary * input.pendingVacationDays),
         formula: 'salario diario * dias de vacaciones pendientes',
         category: BreakdownCategory.settlement,
+        legalBasis: _vacationBasis,
+        legalNote:
+            'Se calculan con los dias pendientes capturados por el usuario.',
       ),
     ];
 
@@ -71,6 +102,9 @@ class LaborCalculatorService {
         amount: _round(vacationAmount * input.vacationPremiumPercentage / 100),
         formula: 'vacaciones * porcentaje prima vacacional',
         category: BreakdownCategory.settlement,
+        legalBasis: _vacationPremiumBasis,
+        legalNote:
+            'El porcentaje predeterminado es 25%, editable si el contrato otorga mas.',
       ),
     );
 
@@ -82,6 +116,9 @@ class LaborCalculatorService {
           amount: _round(integratedDailySalary * 90),
           formula: 'salario diario integrado * 90 dias',
           category: BreakdownCategory.severance,
+          legalBasis: _constitutionalBasis,
+          legalNote:
+              'Estimacion general para despido injustificado; la procedencia depende del caso.',
         ),
         BreakdownItem(
           title: 'Prima de antiguedad',
@@ -90,6 +127,9 @@ class LaborCalculatorService {
           formula:
               'min(sdi, salario minimo diario * 2) * 12 dias * años trabajados',
           category: BreakdownCategory.severance,
+          legalBasis: _seniorityPremiumBasis,
+          legalNote:
+              'Se usa el tope de dos salarios minimos diarios para el salario base.',
         ),
         BreakdownItem(
           title: '20 dias por año',
@@ -97,6 +137,9 @@ class LaborCalculatorService {
           amount: _round(integratedDailySalary * 20 * yearsWorked),
           formula: 'salario diario integrado * 20 dias * años trabajados',
           category: BreakdownCategory.severance,
+          legalBasis: _twentyDaysBasis,
+          legalNote:
+              'Concepto sujeto a supuestos legales y a la accion laboral ejercida.',
         ),
       ]);
     }
@@ -119,6 +162,9 @@ class LaborCalculatorService {
         amount: estimatedTax,
         formula: 'ISR estimado = 0 por ahora',
         category: BreakdownCategory.tax,
+        legalBasis: _taxBasis,
+        legalNote:
+            'No sustituye una determinacion fiscal; se mantiene en cero temporalmente.',
       ),
     );
 
@@ -130,6 +176,9 @@ class LaborCalculatorService {
           amount: offerDifference ?? 0,
           formula: 'oferta de empresa - total neto estimado',
           category: BreakdownCategory.comparison,
+          legalBasis: _comparisonBasis,
+          legalNote:
+              'Sirve solo para contrastar la oferta contra el total neto estimado.',
         ),
       );
     }

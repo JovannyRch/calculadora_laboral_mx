@@ -140,10 +140,11 @@ class PdfReportService {
     return pw.Table(
       border: pw.TableBorder.all(color: PdfColors.blueGrey100),
       columnWidths: const {
-        0: pw.FlexColumnWidth(1.3),
-        1: pw.FlexColumnWidth(1.7),
-        2: pw.FlexColumnWidth(0.9),
-        3: pw.FlexColumnWidth(0.9),
+        0: pw.FlexColumnWidth(1.15),
+        1: pw.FlexColumnWidth(1.35),
+        2: pw.FlexColumnWidth(1.45),
+        3: pw.FlexColumnWidth(0.8),
+        4: pw.FlexColumnWidth(0.8),
       },
       children: [
         pw.TableRow(
@@ -151,6 +152,7 @@ class PdfReportService {
           children: [
             _cell('Concepto', bold: true),
             _cell('Formula', bold: true),
+            _cell('Fundamento', bold: true),
             _cell('Categoria', bold: true),
             _cell('Importe', bold: true),
           ],
@@ -160,6 +162,7 @@ class PdfReportService {
             children: [
               _cell(item.title),
               _cell(item.formula),
+              _cell(_legalText(item)),
               _cell(_categoryLabel(item.category)),
               _cell(_money(item.amount)),
             ],
@@ -193,11 +196,19 @@ class PdfReportService {
       child: pw.Text(
         'Este reporte es una estimacion informativa generada con base en los '
         'datos proporcionados por el usuario. No sustituye asesoria legal, '
-        'fiscal ni laboral profesional.',
+        'fiscal ni laboral profesional. Los fundamentos citados corresponden '
+        'a referencias generales de la Ley Federal del Trabajo vigente al '
+        'momento de preparar esta version de la app.',
         style: const pw.TextStyle(fontSize: 10, color: PdfColors.blueGrey800),
       ),
     );
   }
+}
+
+String _legalText(BreakdownItem item) {
+  if (item.legalBasis.isEmpty) return 'No especificado';
+  if (item.legalNote.isEmpty) return item.legalBasis;
+  return '${item.legalBasis}\n${item.legalNote}';
 }
 
 List<(String, String)> _inputRows(LaborCalculationInput input) {

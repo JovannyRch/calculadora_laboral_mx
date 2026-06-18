@@ -1,4 +1,3 @@
-import 'package:calculadora_laboral_mx/app/app_config.dart';
 import 'package:calculadora_laboral_mx/core/constants/app_sizes.dart';
 import 'package:calculadora_laboral_mx/features/settings/presentation/legal_notice_screen.dart';
 import 'package:calculadora_laboral_mx/features/settings/presentation/settings_controller.dart';
@@ -163,33 +162,6 @@ class SettingsScreen extends ConsumerWidget {
               ],
             ),
           ),
-        ],
-      ),
-    );
-  }
-}
-
-class _SettingLine extends StatelessWidget {
-  const _SettingLine({
-    required this.icon,
-    required this.title,
-    required this.value,
-  });
-
-  final IconData icon;
-  final String title;
-  final String value;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: AppSizes.gapSmall),
-      child: Row(
-        children: [
-          Icon(icon, color: context.colors.primary),
-          const SizedBox(width: AppSizes.gap),
-          Expanded(child: Text(title)),
-          Text(value, style: TextStyle(color: context.colors.onSurfaceVariant)),
         ],
       ),
     );

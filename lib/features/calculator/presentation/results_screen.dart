@@ -387,6 +387,25 @@ class _BreakdownRow extends StatelessWidget {
               fontStyle: FontStyle.italic,
             ),
           ),
+          if (item.legalBasis.isNotEmpty) ...[
+            const SizedBox(height: AppSizes.gapSmall),
+            Text(
+              'Fundamento: ${item.legalBasis}',
+              style: context.textTheme.bodySmall?.copyWith(
+                color: context.colors.onSurfaceVariant,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+          ],
+          if (item.legalNote.isNotEmpty) ...[
+            const SizedBox(height: 4),
+            Text(
+              item.legalNote,
+              style: context.textTheme.bodySmall?.copyWith(
+                color: context.colors.onSurfaceVariant,
+              ),
+            ),
+          ],
         ],
       ),
     );
