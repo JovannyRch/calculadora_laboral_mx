@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:calculadora_laboral_mx/app/app.dart';
 import 'package:calculadora_laboral_mx/features/calculator/presentation/calculator_screen.dart';
 import 'package:calculadora_laboral_mx/features/calculator/presentation/results_screen.dart';
+import 'package:calculadora_laboral_mx/features/legal_guide/presentation/legal_guide_screen.dart';
+import 'package:calculadora_laboral_mx/features/tools/presentation/extra_tools_screens.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -50,5 +52,25 @@ void main() {
 
     expect(find.text('Resultado estimado'), findsOneWidget);
     expect(find.text('Total neto'), findsOneWidget);
+  });
+
+  testWidgets('legal guide renders search and topics', (
+    WidgetTester tester,
+  ) async {
+    await tester.pumpWidget(
+      const ProviderScope(child: MaterialApp(home: LegalGuideScreen())),
+    );
+
+    expect(find.text('Buscar temas'), findsOneWidget);
+    expect(find.text('¿Qué es el finiquito?'), findsOneWidget);
+  });
+
+  testWidgets('aguinaldo tool renders result', (WidgetTester tester) async {
+    await tester.pumpWidget(
+      const ProviderScope(child: MaterialApp(home: AguinaldoToolScreen())),
+    );
+
+    expect(find.text('Calculadora de aguinaldo'), findsOneWidget);
+    expect(find.text('Aguinaldo proporcional'), findsOneWidget);
   });
 }
