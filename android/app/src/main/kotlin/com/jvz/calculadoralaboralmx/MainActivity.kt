@@ -1,4 +1,4 @@
-package com.example.calculadora_laboral_mx
+package com.jvz.calculadoralaboralmx
 
 import io.flutter.embedding.android.FlutterActivity
 
