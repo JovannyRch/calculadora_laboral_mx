@@ -2,7 +2,7 @@ class AppConfig {
   const AppConfig._();
 
   static const adsEnabled = true;
-  static const interstitialAdsEnabled = false;
+  static const interstitialAdsEnabled = true;
   static const premiumEnabled = false;
   static const isPremiumUser = false;
 

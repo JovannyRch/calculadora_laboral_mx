@@ -62,7 +62,7 @@ class SettingsScreen extends ConsumerWidget {
               ],
             ),
           ),
-          const SizedBox(height: AppSizes.gap),
+  /*         const SizedBox(height: AppSizes.gap),
           SectionCard(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -86,7 +86,7 @@ class SettingsScreen extends ConsumerWidget {
                 ),
               ],
             ),
-          ),
+          ), */
           const SizedBox(height: AppSizes.gap),
           SectionCard(
             child: Column(

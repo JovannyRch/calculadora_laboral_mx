@@ -208,7 +208,7 @@ List<(String, String)> _inputRows(LaborCalculationInput input) {
     ('Fecha de ingreso', _formatDate(input.startDate)),
     ('Fecha de salida', _formatDate(input.endDate)),
     ('Antiguedad', '${_yearsWorked(input).toStringAsFixed(2)} años'),
-    ('Salario mensual', _money(input.monthlySalary)),
+    ('Salario mensual bruto', _money(input.monthlySalary)),
     ('Salario diario', _money(dailySalary)),
     ('Salario diario integrado', _money(integratedDailySalary)),
     ('Dias trabajados no pagados', input.unpaidWorkedDays.toString()),

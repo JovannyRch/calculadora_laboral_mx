@@ -41,7 +41,7 @@ class _AguinaldoToolScreenState extends ConsumerState<AguinaldoToolScreen> {
       title: 'Calculadora de aguinaldo',
       children: [
         _MoneyInput(
-          label: 'Salario mensual',
+          label: 'Salario mensual bruto',
           initialValue: _monthlySalary,
           onChanged: (value) => setState(() => _monthlySalary = value),
         ),
@@ -117,7 +117,7 @@ class _VacationsToolScreenState extends ConsumerState<VacationsToolScreen> {
           onPressed: () => _pickDate(false),
         ),
         _MoneyInput(
-          label: 'Salario mensual',
+          label: 'Salario mensual bruto',
           initialValue: _monthlySalary,
           onChanged: (value) => setState(() => _monthlySalary = value),
         ),
@@ -190,7 +190,7 @@ class _DailySalaryToolScreenState extends ConsumerState<DailySalaryToolScreen> {
       title: 'Calculadora de sueldo diario',
       children: [
         _MoneyInput(
-          label: 'Salario mensual',
+          label: 'Salario mensual bruto',
           initialValue: _monthlySalary,
           onChanged: (value) => setState(() {
             _monthlySalary = value;

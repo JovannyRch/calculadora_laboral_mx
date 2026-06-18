@@ -307,7 +307,7 @@ class _SalaryStep extends StatelessWidget {
       child: Column(
         children: [
           _MoneyField(
-            label: 'Salario mensual',
+            label: 'Salario mensual bruto',
             value: input.monthlySalary,
             requiredField: true,
             onChanged: (value) => onMonthlyChanged(value ?? 0),
@@ -459,7 +459,7 @@ class _ConfirmationStep extends StatelessWidget {
           _SummaryLine('Salida', _formatDate(input.endDate)),
           _SummaryLine('Dias no pagados', input.unpaidWorkedDays.toString()),
           _SummaryLine(
-            'Salario mensual',
+            'Salario mensual bruto',
             CurrencyFormatter.mxn(input.monthlySalary),
           ),
           _SummaryLine('Salario diario', _moneyOrDash(input.dailySalary)),
