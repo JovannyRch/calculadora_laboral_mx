@@ -5,6 +5,7 @@ import 'package:calculadora_laboral_mx/features/home/presentation/home_screen.da
 import 'package:calculadora_laboral_mx/features/onboarding/data/onboarding_repository.dart';
 import 'package:calculadora_laboral_mx/features/onboarding/presentation/onboarding_screen.dart';
 import 'package:calculadora_laboral_mx/shared/extensions/context_extensions.dart';
+import 'package:calculadora_laboral_mx/shared/widgets/app_icon_mark.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -64,20 +65,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Container(
-                  width: 88,
-                  height: 88,
-                  decoration: BoxDecoration(
-                    color: Colors.white.withValues(alpha: 0.12),
-                    borderRadius: BorderRadius.circular(28),
-                    border: Border.all(color: Colors.white24),
-                  ),
-                  child: const Icon(
-                    Icons.balance_rounded,
-                    color: Colors.white,
-                    size: 44,
-                  ),
-                ),
+                const AppIconMark(size: 88),
                 const SizedBox(height: 24),
                 Text(
                   'Calculadora Laboral MX',
@@ -93,6 +81,16 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
                   textAlign: TextAlign.center,
                   style: context.textTheme.bodyLarge?.copyWith(
                     color: Colors.white70,
+                  ),
+                ),
+                const SizedBox(height: 28),
+                SizedBox(
+                  width: 120,
+                  child: LinearProgressIndicator(
+                    minHeight: 3,
+                    borderRadius: BorderRadius.circular(999),
+                    color: Colors.white,
+                    backgroundColor: Colors.white24,
                   ),
                 ),
               ],

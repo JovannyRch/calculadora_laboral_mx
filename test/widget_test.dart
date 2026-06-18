@@ -4,6 +4,7 @@ import 'package:calculadora_laboral_mx/app/app.dart';
 import 'package:calculadora_laboral_mx/features/calculator/presentation/calculator_screen.dart';
 import 'package:calculadora_laboral_mx/features/calculator/presentation/results_screen.dart';
 import 'package:calculadora_laboral_mx/features/legal_guide/presentation/legal_guide_screen.dart';
+import 'package:calculadora_laboral_mx/features/settings/presentation/legal_notice_screen.dart';
 import 'package:calculadora_laboral_mx/features/tools/presentation/extra_tools_screens.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -72,5 +73,17 @@ void main() {
 
     expect(find.text('Calculadora de aguinaldo'), findsOneWidget);
     expect(find.text('Aguinaldo proporcional'), findsOneWidget);
+  });
+
+  testWidgets('legal notice states app is not government', (
+    WidgetTester tester,
+  ) async {
+    await tester.pumpWidget(const MaterialApp(home: LegalNoticeScreen()));
+
+    expect(find.text('Aviso legal'), findsWidgets);
+    expect(
+      find.textContaining('no es una entidad gubernamental'),
+      findsOneWidget,
+    );
   });
 }

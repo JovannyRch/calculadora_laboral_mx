@@ -6,6 +6,7 @@ import 'package:calculadora_laboral_mx/features/home/presentation/home_screen.da
 import 'package:calculadora_laboral_mx/features/legal_guide/presentation/legal_guide_screen.dart';
 import 'package:calculadora_laboral_mx/features/legal_guide/presentation/legal_guide_topic_screen.dart';
 import 'package:calculadora_laboral_mx/features/onboarding/presentation/onboarding_screen.dart';
+import 'package:calculadora_laboral_mx/features/settings/presentation/legal_notice_screen.dart';
 import 'package:calculadora_laboral_mx/features/settings/presentation/settings_screen.dart';
 import 'package:calculadora_laboral_mx/features/splash/presentation/splash_screen.dart';
 import 'package:calculadora_laboral_mx/features/tools/presentation/extra_tools_screens.dart';
@@ -77,6 +78,16 @@ final appRouterProvider = Provider<GoRouter>((ref) {
             path: SettingsScreen.routeSegment,
             name: SettingsScreen.routeName,
             builder: (context, state) => const SettingsScreen(),
+          ),
+          GoRoute(
+            path: LegalNoticeScreen.routeSegment,
+            name: LegalNoticeScreen.routeName,
+            builder: (context, state) => const LegalNoticeScreen(),
+          ),
+          GoRoute(
+            path: PrivacyScreen.routeSegment,
+            name: PrivacyScreen.routeName,
+            builder: (context, state) => const PrivacyScreen(),
           ),
           GoRoute(
             path: AguinaldoToolScreen.routeSegment,

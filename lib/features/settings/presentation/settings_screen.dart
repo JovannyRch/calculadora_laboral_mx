@@ -1,10 +1,13 @@
+import 'package:calculadora_laboral_mx/app/app_config.dart';
 import 'package:calculadora_laboral_mx/core/constants/app_sizes.dart';
+import 'package:calculadora_laboral_mx/features/settings/presentation/legal_notice_screen.dart';
 import 'package:calculadora_laboral_mx/features/settings/presentation/settings_controller.dart';
 import 'package:calculadora_laboral_mx/shared/extensions/context_extensions.dart';
 import 'package:calculadora_laboral_mx/shared/widgets/app_scaffold.dart';
 import 'package:calculadora_laboral_mx/shared/widgets/section_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
@@ -55,6 +58,49 @@ class SettingsScreen extends ConsumerWidget {
                   onSelectionChanged: (selection) {
                     controller.setThemeMode(selection.first);
                   },
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: AppSizes.gap),
+          SectionCard(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Monetizacion',
+                  style: context.textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
+                const SizedBox(height: AppSizes.gap),
+                _SettingLine(
+                  icon: Icons.ads_click_rounded,
+                  title: 'Anuncios',
+                  value: AppConfig.showAds ? 'Preparados' : 'Desactivados',
+                ),
+                _SettingLine(
+                  icon: Icons.workspace_premium_rounded,
+                  title: 'Premium',
+                  value: AppConfig.premiumEnabled ? 'Activo' : 'Preparado',
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: AppSizes.gap),
+          SectionCard(
+            child: Column(
+              children: [
+                _NavigationLine(
+                  icon: Icons.balance_rounded,
+                  title: 'Aviso legal',
+                  onTap: () => context.goNamed(LegalNoticeScreen.routeName),
+                ),
+                const Divider(),
+                _NavigationLine(
+                  icon: Icons.privacy_tip_rounded,
+                  title: 'Privacidad',
+                  onTap: () => context.goNamed(PrivacyScreen.routeName),
                 ),
               ],
             ),
@@ -119,6 +165,56 @@ class SettingsScreen extends ConsumerWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class _SettingLine extends StatelessWidget {
+  const _SettingLine({
+    required this.icon,
+    required this.title,
+    required this.value,
+  });
+
+  final IconData icon;
+  final String title;
+  final String value;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: AppSizes.gapSmall),
+      child: Row(
+        children: [
+          Icon(icon, color: context.colors.primary),
+          const SizedBox(width: AppSizes.gap),
+          Expanded(child: Text(title)),
+          Text(value, style: TextStyle(color: context.colors.onSurfaceVariant)),
+        ],
+      ),
+    );
+  }
+}
+
+class _NavigationLine extends StatelessWidget {
+  const _NavigationLine({
+    required this.icon,
+    required this.title,
+    required this.onTap,
+  });
+
+  final IconData icon;
+  final String title;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      contentPadding: EdgeInsets.zero,
+      leading: Icon(icon, color: context.colors.primary),
+      title: Text(title, style: const TextStyle(fontWeight: FontWeight.w800)),
+      trailing: const Icon(Icons.chevron_right_rounded),
+      onTap: onTap,
     );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:calculadora_laboral_mx/app/app_config.dart';
 import 'package:calculadora_laboral_mx/core/constants/app_sizes.dart';
 import 'package:calculadora_laboral_mx/features/calculator/presentation/calculator_screen.dart';
 import 'package:calculadora_laboral_mx/features/history/presentation/history_screen.dart';
@@ -7,6 +8,7 @@ import 'package:calculadora_laboral_mx/features/tools/data/tools_repository.dart
 import 'package:calculadora_laboral_mx/features/tools/presentation/extra_tools_screens.dart';
 import 'package:calculadora_laboral_mx/shared/extensions/context_extensions.dart';
 import 'package:calculadora_laboral_mx/shared/widgets/app_scaffold.dart';
+import 'package:calculadora_laboral_mx/shared/widgets/ad_banner.dart';
 import 'package:calculadora_laboral_mx/shared/widgets/section_card.dart';
 import 'package:calculadora_laboral_mx/shared/widgets/status_chip.dart';
 import 'package:flutter/material.dart';
@@ -29,6 +31,8 @@ class HomeScreen extends ConsumerWidget {
         padding: const EdgeInsets.all(AppSizes.screenPadding),
         children: [
           _HeroCard(onStart: () => context.goNamed(CalculatorScreen.routeName)),
+          const SizedBox(height: AppSizes.gap),
+          const AppAdBanner(adUnitId: AppConfig.bannerHomeAdUnitId),
           const SizedBox(height: AppSizes.gapLarge),
           Text(
             'Herramientas',

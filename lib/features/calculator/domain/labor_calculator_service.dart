@@ -29,8 +29,8 @@ class LaborCalculatorService {
       BreakdownItem(
         title: 'Aguinaldo proporcional',
         description: input.receivedCurrentYearBonus
-            ? 'Ya fue pagado para el ano actual.'
-            : 'Parte proporcional del aguinaldo del ano actual.',
+            ? 'Ya fue pagado para el años actual.'
+            : 'Parte proporcional del aguinaldo del años actual.',
         amount: input.receivedCurrentYearBonus
             ? 0
             : _round(dailySalary * input.annualBonusDays * currentYearRatio),
@@ -88,14 +88,14 @@ class LaborCalculatorService {
           description: 'Salario diario integrado topado a 2 salarios minimos.',
           amount: _round(cappedDailySalary * 12 * yearsWorked),
           formula:
-              'min(sdi, salario minimo diario * 2) * 12 dias * anos trabajados',
+              'min(sdi, salario minimo diario * 2) * 12 dias * años trabajados',
           category: BreakdownCategory.severance,
         ),
         BreakdownItem(
-          title: '20 dias por ano',
-          description: 'Indemnizacion adicional por anos trabajados.',
+          title: '20 dias por año',
+          description: 'Indemnizacion adicional por años trabajados.',
           amount: _round(integratedDailySalary * 20 * yearsWorked),
-          formula: 'salario diario integrado * 20 dias * anos trabajados',
+          formula: 'salario diario integrado * 20 dias * años trabajados',
           category: BreakdownCategory.severance,
         ),
       ]);

@@ -207,7 +207,7 @@ List<(String, String)> _inputRows(LaborCalculationInput input) {
     ('Tipo de calculo', input.calculationType.label),
     ('Fecha de ingreso', _formatDate(input.startDate)),
     ('Fecha de salida', _formatDate(input.endDate)),
-    ('Antiguedad', '${_yearsWorked(input).toStringAsFixed(2)} anos'),
+    ('Antiguedad', '${_yearsWorked(input).toStringAsFixed(2)} años'),
     ('Salario mensual', _money(input.monthlySalary)),
     ('Salario diario', _money(dailySalary)),
     ('Salario diario integrado', _money(integratedDailySalary)),

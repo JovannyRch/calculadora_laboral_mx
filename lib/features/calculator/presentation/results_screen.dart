@@ -11,20 +11,34 @@ import 'package:calculadora_laboral_mx/features/calculator/presentation/pdf_prev
 import 'package:calculadora_laboral_mx/features/history/data/history_repository.dart';
 import 'package:calculadora_laboral_mx/features/history/domain/saved_labor_calculation.dart';
 import 'package:calculadora_laboral_mx/shared/extensions/context_extensions.dart';
+import 'package:calculadora_laboral_mx/shared/widgets/ad_banner.dart';
 import 'package:calculadora_laboral_mx/shared/widgets/app_scaffold.dart';
 import 'package:calculadora_laboral_mx/shared/widgets/section_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-class ResultsScreen extends ConsumerWidget {
+class ResultsScreen extends ConsumerStatefulWidget {
   const ResultsScreen({super.key});
 
   static const routeName = 'results';
   static const routeSegment = 'results';
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<ResultsScreen> createState() => _ResultsScreenState();
+}
+
+class _ResultsScreenState extends ConsumerState<ResultsScreen> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) AppInterstitialAds.maybeShowAfterResult(context);
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final input = ref.watch(calculatorInputProvider);
     final result = const LaborCalculatorService().calculate(input);
 

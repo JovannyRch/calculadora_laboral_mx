@@ -51,7 +51,7 @@ class _AguinaldoToolScreenState extends ConsumerState<AguinaldoToolScreen> {
           onChanged: (value) => setState(() => _bonusDays = value),
         ),
         _NumberInput(
-          label: 'Dias trabajados en el ano',
+          label: 'Dias trabajados en el año',
           initialValue: _workedDays,
           onChanged: (value) => setState(() => _workedDays = value),
         ),
@@ -129,7 +129,7 @@ class _VacationsToolScreenState extends ConsumerState<VacationsToolScreen> {
         ),
         _InfoGrid(
           rows: [
-            ('Antiguedad', '${years.toStringAsFixed(2)} anos'),
+            ('Antiguedad', '${years.toStringAsFixed(2)} años'),
             ('Dias correspondientes', vacationDays.toString()),
             ('Vacaciones proporcionales', proportionalDays.toStringAsFixed(2)),
             ('Prima vacacional', CurrencyFormatter.mxn(premium)),

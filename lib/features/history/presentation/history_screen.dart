@@ -1,4 +1,6 @@
+import 'package:calculadora_laboral_mx/app/app_config.dart';
 import 'package:calculadora_laboral_mx/core/constants/app_sizes.dart';
+import 'package:calculadora_laboral_mx/core/formatters/app_date_formatter.dart';
 import 'package:calculadora_laboral_mx/core/formatters/currency_formatter.dart';
 import 'package:calculadora_laboral_mx/features/calculator/domain/calculation_type.dart';
 import 'package:calculadora_laboral_mx/features/calculator/presentation/calculator_screen.dart';
@@ -7,6 +9,7 @@ import 'package:calculadora_laboral_mx/features/history/domain/saved_labor_calcu
 import 'package:calculadora_laboral_mx/features/history/presentation/saved_calculation_detail_screen.dart';
 import 'package:calculadora_laboral_mx/shared/extensions/context_extensions.dart';
 import 'package:calculadora_laboral_mx/shared/widgets/app_scaffold.dart';
+import 'package:calculadora_laboral_mx/shared/widgets/ad_banner.dart';
 import 'package:calculadora_laboral_mx/shared/widgets/section_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -38,6 +41,8 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
           : ListView(
               padding: const EdgeInsets.all(AppSizes.screenPadding),
               children: [
+                const AppAdBanner(adUnitId: AppConfig.bannerHistoryAdUnitId),
+                const SizedBox(height: AppSizes.gap),
                 _HistoryFilters(
                   query: _query,
                   type: _type,
@@ -156,7 +161,7 @@ class _HistoryTile extends StatelessWidget {
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  '${entry.calculationType.label} · ${_formatDate(entry.createdAt)}',
+                  '${entry.calculationType.label} · ${AppDateFormatter.short(entry.createdAt)}',
                   style: TextStyle(color: context.colors.onSurfaceVariant),
                 ),
               ],
@@ -260,10 +265,4 @@ class _ErrorBanner extends StatelessWidget {
       ),
     );
   }
-}
-
-String _formatDate(DateTime date) {
-  final day = date.day.toString().padLeft(2, '0');
-  final month = date.month.toString().padLeft(2, '0');
-  return '$day/$month/${date.year}';
 }

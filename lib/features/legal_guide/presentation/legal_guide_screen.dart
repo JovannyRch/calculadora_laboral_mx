@@ -1,9 +1,11 @@
+import 'package:calculadora_laboral_mx/app/app_config.dart';
 import 'package:calculadora_laboral_mx/core/constants/app_sizes.dart';
 import 'package:calculadora_laboral_mx/features/legal_guide/data/legal_guide_repository.dart';
 import 'package:calculadora_laboral_mx/features/legal_guide/domain/legal_guide_topic.dart';
 import 'package:calculadora_laboral_mx/features/legal_guide/presentation/legal_guide_topic_screen.dart';
 import 'package:calculadora_laboral_mx/shared/extensions/context_extensions.dart';
 import 'package:calculadora_laboral_mx/shared/widgets/app_scaffold.dart';
+import 'package:calculadora_laboral_mx/shared/widgets/ad_banner.dart';
 import 'package:calculadora_laboral_mx/shared/widgets/section_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -27,6 +29,8 @@ class LegalGuideScreen extends ConsumerWidget {
         padding: const EdgeInsets.all(AppSizes.screenPadding),
         children: [
           const _GuideNotice(),
+          const SizedBox(height: AppSizes.gap),
+          const AppAdBanner(adUnitId: AppConfig.bannerGuideAdUnitId),
           const SizedBox(height: AppSizes.gap),
           _SearchBox(onChanged: controller.setQuery),
           const SizedBox(height: AppSizes.gap),

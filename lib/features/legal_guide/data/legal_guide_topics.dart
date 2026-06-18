@@ -25,7 +25,7 @@ const legalGuideTopics = [
         'ademas del finiquito, cuando la ley o el caso concreto lo permite.\n\n'
         'Un ejemplo comun es el despido injustificado, donde pueden analizarse '
         'conceptos como indemnizacion constitucional, prima de antiguedad y, '
-        'segun el caso, 20 dias por ano.',
+        'segun el caso, 20 dias por año.',
     category: LegalGuideCategory.basics,
     tags: ['liquidacion', 'despido', 'indemnizacion'],
   ),
@@ -75,10 +75,10 @@ const legalGuideTopics = [
     id: 'prima-antiguedad',
     title: '¿Qué es la prima de antigüedad?',
     summary:
-        'Prestacion calculada con dias por ano trabajado y salario topado.',
+        'Prestacion calculada con dias por año trabajado y salario topado.',
     content:
         'La prima de antiguedad es una prestacion que se calcula con base en '
-        '12 dias por ano trabajado, normalmente considerando un salario diario '
+        '12 dias por año trabajado, normalmente considerando un salario diario '
         'topado.\n\n'
         'Puede aparecer en escenarios especificos, por ejemplo en ciertos '
         'casos de separacion o reclamacion. Conviene revisar el caso con una '
@@ -90,15 +90,15 @@ const legalGuideTopics = [
     id: 'aguinaldo-proporcional',
     title: '¿Qué es el aguinaldo proporcional?',
     summary:
-        'Parte del aguinaldo generada segun los dias trabajados en el ano.',
+        'Parte del aguinaldo generada segun los dias trabajados en el año.',
     content:
         'El aguinaldo proporcional es la parte del aguinaldo anual que se '
-        'genera por el tiempo trabajado durante el ano.\n\n'
-        'Si la relacion termina antes de cerrar el ano, suele calcularse con '
+        'genera por el tiempo trabajado durante el año.\n\n'
+        'Si la relacion termina antes de cerrar el año, suele calcularse con '
         'el salario diario, los dias de aguinaldo pactados o legales, y la '
-        'proporcion del ano trabajado.',
+        'proporcion del año trabajado.',
     category: LegalGuideCategory.calculations,
-    tags: ['aguinaldo', 'proporcional', 'ano actual'],
+    tags: ['aguinaldo', 'proporcional', 'año actual'],
   ),
   LegalGuideTopic(
     id: 'vacaciones-proporcionales',
@@ -107,7 +107,7 @@ const legalGuideTopics = [
         'Vacaciones generadas segun antiguedad y tiempo trabajado del periodo.',
     content:
         'Las vacaciones proporcionales son los dias de vacaciones generados '
-        'durante el periodo laboral, aunque no se haya completado todo el ano '
+        'durante el periodo laboral, aunque no se haya completado todo el año '
         'de servicio.\n\n'
         'La base depende de la antiguedad y de la tabla de vacaciones vigente. '
         'El calculo estimado usa la proporcion del periodo trabajado.',
