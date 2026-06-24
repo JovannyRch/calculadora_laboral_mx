@@ -3,6 +3,7 @@ import 'package:calculadora_laboral_mx/core/constants/app_sizes.dart';
 import 'package:calculadora_laboral_mx/features/legal_guide/data/legal_guide_repository.dart';
 import 'package:calculadora_laboral_mx/features/legal_guide/domain/legal_guide_topic.dart';
 import 'package:calculadora_laboral_mx/features/legal_guide/presentation/legal_guide_topic_screen.dart';
+import 'package:calculadora_laboral_mx/features/legal_guide/presentation/official_sources_screen.dart';
 import 'package:calculadora_laboral_mx/shared/extensions/context_extensions.dart';
 import 'package:calculadora_laboral_mx/shared/widgets/app_scaffold.dart';
 import 'package:calculadora_laboral_mx/shared/widgets/ad_banner.dart';
@@ -29,6 +30,8 @@ class LegalGuideScreen extends ConsumerWidget {
         padding: const EdgeInsets.all(AppSizes.screenPadding),
         children: [
           const _GuideNotice(),
+          const SizedBox(height: AppSizes.gap),
+          const _OfficialSourcesButton(),
           const SizedBox(height: AppSizes.gap),
           const AppAdBanner(adUnitId: AppConfig.bannerGuideAdUnitId),
           const SizedBox(height: AppSizes.gap),
@@ -77,6 +80,43 @@ class _GuideNotice extends StatelessWidget {
               style: TextStyle(color: context.colors.onSurfaceVariant),
             ),
           ),
+        ],
+      ),
+    );
+  }
+}
+
+class _OfficialSourcesButton extends StatelessWidget {
+  const _OfficialSourcesButton();
+
+  @override
+  Widget build(BuildContext context) {
+    return SectionCard(
+      onTap: () => context.goNamed(OfficialSourcesScreen.routeName),
+      child: Row(
+        children: [
+          Icon(Icons.verified_rounded, color: context.colors.primary),
+          const SizedBox(width: AppSizes.gap),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  'Ver fuentes oficiales',
+                  style: TextStyle(fontWeight: FontWeight.w800),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  'Ley Federal del Trabajo, PROFEDET y STPS.',
+                  style: TextStyle(
+                    color: context.colors.onSurfaceVariant,
+                    height: 1.3,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const Icon(Icons.chevron_right_rounded),
         ],
       ),
     );

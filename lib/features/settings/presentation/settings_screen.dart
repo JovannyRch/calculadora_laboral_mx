@@ -1,4 +1,5 @@
 import 'package:calculadora_laboral_mx/core/constants/app_sizes.dart';
+import 'package:calculadora_laboral_mx/features/legal_guide/presentation/official_sources_screen.dart';
 import 'package:calculadora_laboral_mx/features/settings/presentation/legal_notice_screen.dart';
 import 'package:calculadora_laboral_mx/features/settings/presentation/settings_controller.dart';
 import 'package:calculadora_laboral_mx/shared/extensions/context_extensions.dart';
@@ -90,6 +91,13 @@ class SettingsScreen extends ConsumerWidget {
           SectionCard(
             child: Column(
               children: [
+                _NavigationLine(
+                  icon: Icons.verified_rounded,
+                  title: 'Fuentes oficiales',
+                  onTap: () =>
+                      context.goNamed(OfficialSourcesScreen.routeName),
+                ),
+                const Divider(),
                 _NavigationLine(
                   icon: Icons.balance_rounded,
                   title: 'Aviso legal',

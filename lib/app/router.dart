@@ -5,6 +5,7 @@ import 'package:calculadora_laboral_mx/features/history/presentation/saved_calcu
 import 'package:calculadora_laboral_mx/features/home/presentation/home_screen.dart';
 import 'package:calculadora_laboral_mx/features/legal_guide/presentation/legal_guide_screen.dart';
 import 'package:calculadora_laboral_mx/features/legal_guide/presentation/legal_guide_topic_screen.dart';
+import 'package:calculadora_laboral_mx/features/legal_guide/presentation/official_sources_screen.dart';
 import 'package:calculadora_laboral_mx/features/onboarding/presentation/onboarding_screen.dart';
 import 'package:calculadora_laboral_mx/features/settings/presentation/legal_notice_screen.dart';
 import 'package:calculadora_laboral_mx/features/settings/presentation/settings_screen.dart';
@@ -73,6 +74,11 @@ final appRouterProvider = Provider<GoRouter>((ref) {
                 },
               ),
             ],
+          ),
+          GoRoute(
+            path: OfficialSourcesScreen.routeSegment,
+            name: OfficialSourcesScreen.routeName,
+            builder: (context, state) => const OfficialSourcesScreen(),
           ),
           GoRoute(
             path: SettingsScreen.routeSegment,
